@@ -14,6 +14,12 @@ data class Item(
     }
 }
 
+abstract class Human(val name: String){
+    fun hello(){
+        println("My name is $name")
+    }
+}
+class Person(name: String): Human(name)
 fun main(){
 //    println(age)
 //    age=45
@@ -21,13 +27,15 @@ fun main(){
 //    age=-345
 //    println(age)
 
-    val sword = Item(1, "Sword", 1)
-    val betterSword = sword.copy(quantity = 2)
-    println(sword.toString())
-    println(betterSword.toString())
+//    val sword = Item(1, "Sword", 1)
+//    val betterSword = sword.copy(quantity = 2)
+//    println(sword.toString())
+//    println(betterSword.toString())
+//
+//    val(id, name, quantity)=betterSword
+//    println("Id предмета: $id\nИмя: $name\nКоличество: $quantity\n")
 
-    val(id, name, quantity)=betterSword
-    println("Id предмета: $id\nИмя: $name\nКоличество: $quantity\n")
-
+    val diana: Person=Person("Diana")
+    val dinara: Human= Person("Dinara")
 
 }
