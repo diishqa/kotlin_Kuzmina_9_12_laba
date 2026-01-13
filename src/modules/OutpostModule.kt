@@ -1,3 +1,5 @@
+package modules
+
 abstract class OutpostModule(
     val name: String,
     var level: Int=1

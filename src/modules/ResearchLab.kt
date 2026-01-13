@@ -1,3 +1,5 @@
+package modules
+
 class ResearchLab : OutpostModule(
     "Исследовательская лаборатория"
 ){

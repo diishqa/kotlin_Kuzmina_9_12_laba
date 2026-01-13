@@ -1,3 +1,5 @@
+package example
+
 var age: Int=18
     set(value){
         if ((value>0) and (value <110))
@@ -40,13 +42,13 @@ class Rectangle(val width: Float, val height: Float) :Figure(){
 }
 
 fun main(){
-//    println(age)
-//    age=45
-//    println(age)
-//    age=-345
-//    println(age)
+//    println(example.age)
+//    example.age=45
+//    println(example.age)
+//    example.age=-345
+//    println(example.age)
 
-//    val sword = Item(1, "Sword", 1)
+//    val sword = example.Item(1, "Sword", 1)
 //    val betterSword = sword.copy(quantity = 2)
 //    println(sword.toString())
 //    println(betterSword.toString())

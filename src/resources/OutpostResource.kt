@@ -1,4 +1,4 @@
-import jdk.jfr.DataAmount
+package resources
 
 data class OutpostResource(
     val id: Int,
