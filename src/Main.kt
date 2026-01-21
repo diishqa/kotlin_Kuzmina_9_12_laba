@@ -1,8 +1,10 @@
 import example.GameSession
 import modules.EnergyGeneretor
+import modules.ModuleResult
 import modules.ResearchLab
 import resources.OutpostResource
 import resources.ResourseManager
+import javax.management.modelmbean.ModelMBean
 
 fun main() {
 //    val manager= resources.ResourseManager()
@@ -24,4 +26,12 @@ fun main() {
 //    println()
 //    manager.printAll()
 
+    fun handModuleResult(result: ModuleResult){
+        when(result){
+            is ModuleResult.Success -> println("УСПЕХ: ${result.message}")
+            is ModuleResult.ResourceProduced -> println("Произведено: ${result.reasourceName} +${result.amount}")
+            is ModuleResult.NotEnoughResources -> println("Недостаточно ресурса ${result.resourceName}." + "Нужно: ${result.required}, есть: ${result.available}")
+            is ModuleResult.Error -> println("ОШИБКА: ${result.reason}")
+        }
+    }
 }
