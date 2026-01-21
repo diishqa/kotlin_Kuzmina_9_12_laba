@@ -1,5 +1,7 @@
 package modules
 
+import resources.ResourseManager
+
 class ResearchLab : OutpostModule(
     "Исследовательская лаборатория"
 ){
