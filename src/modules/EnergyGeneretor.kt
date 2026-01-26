@@ -2,7 +2,7 @@ package modules
 
 import resources.OutpostResource
 import resources.ResourseManager
-import javax.management.modelmbean.ModelMBean
+
 
 class EnergyGeneretor : OutpostModule("Генератор энергии") {
     override fun performAction(manager: ResourseManager) : ModuleResult {

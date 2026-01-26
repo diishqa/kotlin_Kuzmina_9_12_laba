@@ -1,4 +1,5 @@
 import example.GameSession
+import example.handleResult
 import modules.EnergyGeneretor
 import modules.ModuleResult
 import modules.ResearchLab
@@ -7,24 +8,23 @@ import resources.ResourseManager
 import javax.management.modelmbean.ModelMBean
 
 fun main() {
-//    val manager= resources.ResourseManager()
-//    val minerals= resources.OutpostResource(1, "Minerals", 300)
-//    val gas = resources.OutpostResource(2, "Gas", 100)
-//    manager.add(minerals)
-//    manager.add(gas)
-//    manager.printAll()
-//
-//    val bonus =minerals.copy(amount = minerals.amount + 50)
-//    println("Копия минералов с бонусом: $bonus")
-//    val manager = ResourseManager()
-//    manager.add(OutpostResource(1, "Minerals", 120))
-//    manager.add(OutpostResource(2, "Gas", 40))
-//    val generator = EnergyGeneretor()
-//    val lab= ResearchLab()
-//    generator.performAction(manager)
-//    lab.performAction(manager)
-//    println()
-//    manager.printAll()
+    val manager= resources.ResourseManager()
+    val minerals= resources.OutpostResource(1, "Minerals", 300)
+    val gas = resources.OutpostResource(2, "Gas", 100)
+    manager.add(minerals)
+    manager.add(gas)
+    manager.printAll()
+
+    val bonus =minerals.copy(amount = minerals.amount + 50)
+    println("Копия минералов с бонусом: $bonus")
+    manager.add(OutpostResource(1, "Minerals", 120))
+    manager.add(OutpostResource(2, "Gas", 40))
+    val generator = EnergyGeneretor()
+    val lab= ResearchLab()
+    generator.performAction(manager)
+    lab.performAction(manager)
+    println()
+    manager.printAll()
 
     fun handModuleResult(result: ModuleResult){
         when(result){
@@ -32,6 +32,13 @@ fun main() {
             is ModuleResult.ResourceProduced -> println("Произведено: ${result.reasourceName} +${result.amount}")
             is ModuleResult.NotEnoughResources -> println("Недостаточно ресурса ${result.resourceName}." + "Нужно: ${result.required}, есть: ${result.available}")
             is ModuleResult.Error -> println("ОШИБКА: ${result.reason}")
+
         }
     }
+    val generatorResult = generator.performAction(manager)
+    val labResult = lab.performAction(manager)
+    handModuleResult(generatorResult)
+    handModuleResult(labResult)
+    println()
+    manager.printAll()
 }

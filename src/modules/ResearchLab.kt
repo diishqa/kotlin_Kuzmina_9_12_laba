@@ -7,16 +7,15 @@ class ResearchLab : OutpostModule(
 ){
     override fun performAction(manager: ResourseManager) : ModuleResult {
         val minerals=manager.get("Minerals")
-        if (minerals == null || minerals.amount < 30){
+        if (minerals == null || minerals.amount < 30) {
             return ModuleResult.NotEnoughResources(
                 resourceName = "Minerals",
                 required = 30,
                 available = minerals?.amount ?:0
             )
-            println("Недостаточно мминералов для исследования")
         }
-        minerals.amount -=30
+        minerals.amount -= 30
         return ModuleResult.Success("Исследование завершено")
-        println("Лаборатория проводит исследование (минералы -30)")
+
     }
 }

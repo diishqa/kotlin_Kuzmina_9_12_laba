@@ -3,7 +3,7 @@ package payment
 class PaymentProcessor{
     private val validator = PaymentValidator()
 
-    fun pay(payment: List<Payment>): PaymentResult {
+    fun pay(payment: Payment): PaymentResult {
         if (!validator.check(payment)) {
             return PaymentResult.Error("Ошибка валидации")
         }

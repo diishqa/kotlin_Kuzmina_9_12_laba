@@ -11,8 +11,9 @@ fun main() {
     )
     println("=== Обработка платежей ===")
     payment.forEach { payment -> println("\nПлатеж ${payment.type}: ${payment.card.take(4)}..., ${payment.sum} руб") }
-    val result = processor.pay(payment)
-    processor.show(result)
+    payment.forEach { p -> val result = processor.pay(p)
+        processor.show(result)
+    }
 
     println("\n=== работа с enum ===")
     val cardType=CardType.VISA
