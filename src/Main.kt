@@ -2,6 +2,10 @@ import example.*
 import modules.EnergyGeneretor
 import modules.ModuleResult
 import modules.ResearchLab
+import outpostState.ObservableResource
+import outpostState.OutpostManager
+import outpostState.ResourceObserver
+import outpostState.StateStorage
 import resources.OutpostResource
 import resources.ResourseManager
 import resources.SystemLogger
@@ -73,6 +77,22 @@ fun main() {
     if (loadedResource.isEmpty()){
         manager.add(OutpostResource(1, "Minerals", 300))
         manager.add(OutpostResource(2, "Gas", 100))
+    }
+
+    println("------------------------------------------------------")
+    val manager2 by lazy {
+        OutpostManager()
+    }
+    val res=ResourceObserver()
+    val miner=ObservableResource("Minerals", 100)
+    manager2.toString()
+    val ores=miner.amount
+    miner.amount=200
+    res.nabl("Minerals", ores, miner.amount)
+    StateStorage.save(miner)
+    val zagr=StateStorage.load()
+    if (zagr!=null){
+        println("загружено: ${zagr.name} = ${zagr.amount}")
     }
 
 
