@@ -1,11 +1,11 @@
-import example.GameSession
-import example.handleResult
+import example.*
 import modules.EnergyGeneretor
 import modules.ModuleResult
 import modules.ResearchLab
 import resources.OutpostResource
 import resources.ResourseManager
 import javax.management.modelmbean.ModelMBean
+import kotlin.properties.Delegates
 
 fun main() {
     val manager= resources.ResourseManager()
@@ -25,6 +25,15 @@ fun main() {
     lab.performAction(manager)
     println()
     manager.printAll()
+
+    val max = InstantMessenger("MAX")
+    val photoCamera=PhotoCamera()
+    val yotaPhone=SmartPhone("YotaPhone", max)
+    yotaPhone.sendTextMessage()
+    yotaPhone.sendVideoMessage()
+
+    counter=1
+    counter=5
 
     fun handModuleResult(result: ModuleResult){
         when(result){
