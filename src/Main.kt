@@ -35,6 +35,38 @@ fun main() {
     counter=1
     counter=5
 
+    println("------------------------------------------------------")
+    println("Создаем профиль пользователя...")
+    val user=UserProfile("Алиса", "alice@example.com")
+    println("\nИмя: ${user.name}")
+    println("Email: ${user.email}")
+    println("\nОбращаемся к аватару впервые:")
+    println("Файл аватара: ${user.avatar}")
+    println("\nОбращаемся к аватару снова (должын быть взят из кэша):")
+    println("Файл аватара: ${user.avatar}")
+    println("\nМеняем email:")
+    user.email="elice_new@example.org"
+    println("\nМеняем имя:")
+    user.name="Алиса К."
+    println("------------------------------------------------------")
+
+    println("Создаем героя...")
+    val hero = GameHero("Воин света")
+    println("\nТекущая мана: ${hero.mana}")
+    println("\nГерой пытается использовать способоность:")
+    println("Способность: ${hero.ultimate}")
+    println("\nПовторный вызов способности (должна быть мгновенной):")
+    println("Способность: ${hero.ultimate}")
+    println("\nМеняем имя героя:")
+    hero.name="Темный принц"
+    println("\nГерой восстанавливает ману:")
+    hero.mana=200
+
+
+
+
+
+
     fun handModuleResult(result: ModuleResult){
         when(result){
             is ModuleResult.Success -> println("УСПЕХ: ${result.message}")
