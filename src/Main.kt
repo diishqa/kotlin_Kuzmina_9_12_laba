@@ -4,6 +4,7 @@ import modules.ModuleResult
 import modules.ResearchLab
 import resources.OutpostResource
 import resources.ResourseManager
+import resources.SystemLogger
 import javax.management.modelmbean.ModelMBean
 import kotlin.properties.Delegates
 
@@ -15,7 +16,7 @@ fun main() {
     manager.add(gas)
     manager.printAll()
 
-    val bonus =minerals.copy(amount = minerals.amount + 50)
+    val bonus =minerals.copy(amountInit = minerals.amount + 50)
     println("Копия минералов с бонусом: $bonus")
     manager.add(OutpostResource(1, "Minerals", 120))
     manager.add(OutpostResource(2, "Gas", 40))
@@ -62,8 +63,17 @@ fun main() {
     println("\nГерой восстанавливает ману:")
     hero.mana=200
 
+    println("------------------------------------------------------")
+    val logger by lazy { SystemLogger }
+    logger.log("Запуск базы")
 
-
+    println("------------------------------------------------------")
+    val loadedResource = FileStorage.load()
+    loadedResource.forEach{manager.add(it)}
+    if (loadedResource.isEmpty()){
+        manager.add(OutpostResource(1, "Minerals", 300))
+        manager.add(OutpostResource(2, "Gas", 100))
+    }
 
 
 
@@ -82,4 +92,7 @@ fun main() {
     handModuleResult(labResult)
     println()
     manager.printAll()
+
+    FileStorage.save(manager.getAll())
 }
+
